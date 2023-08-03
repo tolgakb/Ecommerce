@@ -1,4 +1,4 @@
-{% include "store/base.html" %}
+<h1>Delete account</h1>{% include "store/base.html" %}
 
 {% load static %}
 
@@ -18,18 +18,17 @@
 
         <div class="container bg-white shadow-md p-5 form-layout">
 
-            <h3>Login to your account</h3>
+            <h3>Delete your account</h3>
 
-            <br>
+            <hr>
             <br>
             <form method="POST" autocomplete="off">
                 {% csrf_token %}
 
-                {{form.username|as_crispy_field}} <br>
-                {{form.password|as_crispy_field}} <br>
+                <p>Are you sure that you want to delete your account?</p>
 
                 <br><br>
-                <button type="submit" class="btn btn-secondary btn-lg w-100 btn-block p-2"> &nbsp; Login</button>
+                <button type="submit" class="btn btn-danger btn-lg w-100 btn-block p-2"> &nbsp; Delete your account</button>
 
 
             </form>
