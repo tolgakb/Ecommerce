@@ -4,6 +4,7 @@ from payment.forms import ShippingForm
 from payment.models import ShippingAddress
 
 from django.contrib.auth.models import User
+from payment.models import Order, OrderItem
 
 from django.contrib.sites.shortcuts import get_current_site
 from .token import user_tokenizer_generate
@@ -228,3 +229,20 @@ def manage_shipping(request):
     }
 
     return render(request, 'account/manage-shipping.html', context)
+
+@login_required(login_url = 'my-login')
+def track_orders(request):
+
+    try:
+
+        orders = OrderItem.objects.filter(user = request.user)
+
+        context ={
+            'orders': orders,
+        }
+
+        return render(request, 'account/track-orders.html', context)
+    
+    except:
+                
+        return render(request, 'account/track-orders.html')
